@@ -1,9 +1,13 @@
 using BL.Mappings;
 using BL.Services;
 using BL.Services.PatientsService;
+using BL.Services.ReportService;
 using BL.Services.TestsService;
 using DAL;
 using DAL.Repositories;
+using DAL.Repositories.PatientsRepository;
+using DAL.Repositories.ReportsRepository;
+using DAL.Repositories.TestsRepository;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -49,22 +53,28 @@ namespace iMDSoft
             {
                 cfg.AddProfile<PatientProfile>();
                 cfg.AddProfile<TestProfile>();
+                cfg.AddProfile<ReportProfile>();
             });
 
             services.AddLogging(builder => builder.AddConsole());
 
             services.AddScoped<IValidator<BL.Models.Patient>, BL.Validators.PatientValidator>();
             services.AddScoped<IValidator<BL.Models.Test>, BL.Validators.TestValidator>();
+            services.AddScoped<IValidator<BL.Models.ReportPeriod>, BL.Validators.ReportPeriodValidator>();
 
             services.AddScoped<IRepository<DAL.Entities.Patient>, PatientsRepository>();
             services.AddScoped<IRepository<DAL.Entities.Test>, TestsRepository>();
+            services.AddScoped<IReportsRepository, ReportsRepository>();
 
             services.AddScoped<IBaseService<DAL.Entities.Patient, BL.Models.Patient, PatientsService>, PatientsService>();
             services.AddScoped<IBaseService<DAL.Entities.Test, BL.Models.Test, TestsService>, TestsService>();
+            services.AddScoped<IReportsService, ReportsService>();
 
             services.AddTransient<MainForm>();
             services.AddTransient<PatientForm>();
             services.AddTransient<TestForm>();
+            services.AddTransient<ReportDialog>();
+            services.AddTransient<ReportForm>();
 
             return services.BuildServiceProvider();
         }

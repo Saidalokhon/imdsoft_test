@@ -24,12 +24,12 @@ namespace BL.Services
             _logger = logger;
         }
 
-        public async Task Add(TModel model)
+        public async Task AddAsync(TModel model)
         {
             try
             {
                 _logger.LogInformation("Adding new entity of type {EntityType}.", typeof(TEntity).Name);
-                await _repository.Add(_mapper.Map<TEntity>(model));
+                await _repository.AddAsync(_mapper.Map<TEntity>(model));
             }
             catch (Exception ex)
             {
@@ -38,12 +38,12 @@ namespace BL.Services
             }
         }
 
-        public async Task Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             try
             {
                 _logger.LogInformation("Deleting entity of type {EntityType} with ID {Id}.", typeof(TEntity).Name, id);
-                await _repository.Delete(id);
+                await _repository.DeleteAsync(id);
             }
             catch (Exception ex)
             {
@@ -52,12 +52,12 @@ namespace BL.Services
             }
         }
 
-        public async Task<IEnumerable<TModel>> GetAll()
+        public async Task<IEnumerable<TModel>> GetAllAsync()
         {
             try
             {
                 _logger.LogInformation("Retrieving all entities of type {EntityType}.", typeof(TEntity).Name);
-                return _mapper.Map<IEnumerable<TModel>>(await _repository.GetAll());
+                return _mapper.Map<IEnumerable<TModel>>(await _repository.GetAllAsync());
             }
             catch (Exception ex)
             {
@@ -66,12 +66,12 @@ namespace BL.Services
             }
         }
 
-        public async Task<TModel> GetById(int id)
+        public async Task<TModel> GetByIdAsync(int id)
         {
             try
             {
                 _logger.LogInformation("Retrieving entity of type {EntityType} with ID {Id}.", typeof(TEntity).Name, id);
-                return _mapper.Map<TModel>(await _repository.GetById(id));
+                return _mapper.Map<TModel>(await _repository.GetByIdAsync(id));
 
             }
             catch (Exception ex)
@@ -81,12 +81,12 @@ namespace BL.Services
             }
         }
 
-        public async Task Update(TModel model, int id)
+        public async Task UpdateAsync(TModel model, int id)
         {
             try
             {
                 _logger.LogInformation("Updating entity of type {EntityType}.", typeof(TEntity).Name);
-                await _repository.Update(_mapper.Map<TEntity>(model), id);
+                await _repository.UpdateAsync(_mapper.Map<TEntity>(model), id);
             }
             catch (Exception ex)
             {
@@ -95,8 +95,9 @@ namespace BL.Services
             }
         }
 
-        public async Task<FluentValidation.Results.ValidationResult> Validate(TModel model)
+        public async Task<FluentValidation.Results.ValidationResult> ValidateAsync(TModel model)
         {
+            _logger.LogInformation("Validating model of type {ModelType}.", typeof(TModel).Name);
             return await _validator.ValidateAsync(model);
         }
     }

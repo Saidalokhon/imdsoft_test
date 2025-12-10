@@ -156,6 +156,7 @@
             Controls.Add(patientId_lbl);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             MaximizeBox = false;
+            MinimizeBox = false;
             Name = "PatientForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "PatientForm";

@@ -1,7 +1,7 @@
 ﻿using DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace DAL.Repositories
+namespace DAL.Repositories.TestsRepository
 {
     public class TestsRepository : BaseRepository<Test>
     {
@@ -9,7 +9,7 @@ namespace DAL.Repositories
         {
         }
 
-        public override async Task<IEnumerable<Test>> GetAll()
+        public override async Task<IEnumerable<Test>> GetAllAsync()
         {
             return await _context.Tests.Include(t => t.Patient).ToListAsync();
         }

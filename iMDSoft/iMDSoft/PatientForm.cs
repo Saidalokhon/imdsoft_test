@@ -30,7 +30,7 @@ namespace iMDSoft
 
         private async void patientSave_btn_Click(object sender, EventArgs e)
         {
-            var validationResult = await _patientsService.Validate(Patient);
+            var validationResult = await _patientsService.ValidateAsync(Patient);
             if (!validationResult.IsValid)
             {
                 MessageBox.Show(validationResult.Errors.First().ErrorMessage);
@@ -41,12 +41,12 @@ namespace iMDSoft
                 {
                     if (IsNewPatient())
                     {
-                        await _patientsService.Add(Patient);
+                        await _patientsService.AddAsync(Patient);
                         MessageBox.Show($"Patient {Patient.Name} added successfully!");
                     }
                     else
                     {
-                        await _patientsService.Update(Patient, Patient.Id);
+                        await _patientsService.UpdateAsync(Patient, Patient.Id);
                         MessageBox.Show($"Patient with ID {Patient.Id} updated successfully!");
                     }
                     DialogResult = DialogResult.OK;
@@ -97,7 +97,7 @@ namespace iMDSoft
             {
                 try
                 {
-                    await _patientsService.Delete(Patient.Id);
+                    await _patientsService.DeleteAsync(Patient.Id);
                     MessageBox.Show($"Patient with ID {Patient.Id} deleted successfully!");
                     DialogResult = DialogResult.OK;
                     Close();

@@ -8,19 +8,23 @@ namespace iMDSoft
     {
         private readonly IBaseService<DAL.Entities.Patient, BL.Models.Patient, PatientsService> _patientsService;
         private readonly IBaseService<DAL.Entities.Test, BL.Models.Test, TestsService> _testsService;
+
         private readonly PatientForm _patientForm;
         private readonly TestForm _testForm;
+        private readonly ReportDialog _reportDialog;
 
         public MainForm(
             IBaseService<DAL.Entities.Patient, BL.Models.Patient, PatientsService> patientsService,
             IBaseService<DAL.Entities.Test, BL.Models.Test, TestsService> testsService,
             PatientForm patientForm,
-            TestForm testForm)
+            TestForm testForm,
+            ReportDialog reportDialog)
         {
             _patientsService = patientsService;
             _testsService = testsService;
             _patientForm = patientForm;
             _testForm = testForm;
+            _reportDialog = reportDialog;
 
             InitializeComponent();
         }
@@ -48,7 +52,7 @@ namespace iMDSoft
             int patientId = int.Parse(selectedItems[0].SubItems[0].Text);
             try
             {
-                var patient = await _patientsService.GetById(patientId);
+                var patient = await _patientsService.GetByIdAsync(patientId);
                 _patientForm.Patient = patient;
                 var dialogResult = _patientForm.ShowDialog();
                 if (dialogResult == DialogResult.OK)
@@ -99,7 +103,7 @@ namespace iMDSoft
             int testId = int.Parse(selectedItems[0].SubItems[0].Text);
             try
             {
-                var test = await _testsService.GetById(testId);
+                var test = await _testsService.GetByIdAsync(testId);
                 _testForm.Test = test;
                 var dialogResult = _testForm.ShowDialog();
                 if (dialogResult == DialogResult.OK)
@@ -115,7 +119,7 @@ namespace iMDSoft
 
         private async Task UpdatePatientsAsync()
         {
-            var patients = await _patientsService.GetAll();
+            var patients = await _patientsService.GetAllAsync();
 
             profiles_lvw.BeginUpdate();
             profiles_lvw.Items.Clear();
@@ -139,7 +143,7 @@ namespace iMDSoft
         {
             try
             {
-                var patient = await _patientsService.GetById(patientId);
+                var patient = await _patientsService.GetByIdAsync(patientId);
                 var tests = patient.Tests;
 
                 tests_lvw.BeginUpdate();
@@ -165,8 +169,11 @@ namespace iMDSoft
             {
                 MessageBox.Show($"Couldn't update tests for patient with ID {patientId}. Error: {ex.Message}");
             }
+        }
 
-
+        private void generateReport_btn_Click(object sender, EventArgs e)
+        {
+            _reportDialog.ShowDialog();
         }
     }
 }

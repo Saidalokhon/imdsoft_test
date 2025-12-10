@@ -187,6 +187,7 @@
             Controls.Add(testId_lbl);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             MaximizeBox = false;
+            MinimizeBox = false;
             Name = "TestForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "TestForm";

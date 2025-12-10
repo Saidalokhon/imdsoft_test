@@ -42,6 +42,7 @@
             testResult = new ColumnHeader();
             isWithinThreshold = new ColumnHeader();
             addTest_btn = new Button();
+            generateReport_btn = new Button();
             SuspendLayout();
             // 
             // addPatient_btn
@@ -151,11 +152,22 @@
             addTest_btn.UseVisualStyleBackColor = true;
             addTest_btn.Click += addTest_btn_Click;
             // 
+            // generateReport_btn
+            // 
+            generateReport_btn.Location = new Point(631, 409);
+            generateReport_btn.Name = "generateReport_btn";
+            generateReport_btn.Size = new Size(149, 29);
+            generateReport_btn.TabIndex = 4;
+            generateReport_btn.Text = "Generate report";
+            generateReport_btn.UseVisualStyleBackColor = true;
+            generateReport_btn.Click += generateReport_btn_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1233, 450);
+            Controls.Add(generateReport_btn);
             Controls.Add(addTest_btn);
             Controls.Add(tests_lvw);
             Controls.Add(profiles_lvw);
@@ -186,5 +198,6 @@
         private ColumnHeader testDate;
         private ColumnHeader testResult;
         private ColumnHeader isWithinThreshold;
+        private Button generateReport_btn;
     }
 }

@@ -32,7 +32,7 @@ namespace iMDSoft
 
         private async void testSave_btn_Click(object sender, EventArgs e)
         {
-            var validationResult = await _testsService.Validate(Test);
+            var validationResult = await _testsService.ValidateAsync(Test);
             if (!validationResult.IsValid)
             {
                 MessageBox.Show(validationResult.Errors.First().ErrorMessage);
@@ -43,12 +43,12 @@ namespace iMDSoft
                 {
                     if (IsNewTest())
                     {
-                        await _testsService.Add(Test);
+                        await _testsService.AddAsync(Test);
                         MessageBox.Show($"Test {Test.TestName} added successfully!");
                     }
                     else
                     {
-                        await _testsService.Update(Test, Test.Id);
+                        await _testsService.UpdateAsync(Test, Test.Id);
                         MessageBox.Show($"Test with ID {Test.Id} updated successfully!");
                     }
                     DialogResult = DialogResult.OK;
@@ -104,7 +104,7 @@ namespace iMDSoft
             {
                 try
                 {
-                    await _testsService.Delete(Test.Id);
+                    await _testsService.DeleteAsync(Test.Id);
                     MessageBox.Show($"Test with ID {Test.Id} deleted successfully!");
                     DialogResult = DialogResult.OK;
                     Close();
