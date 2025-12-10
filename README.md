@@ -7,7 +7,7 @@ It is a WinForms desktop app for managing patients, their medical tests, and gen
 
 1. **Clone the repository**
    ```bash
-   git clone <REPO_URL>
+   git clone https://github.com/Saidalokhon/imdsoft_test.git
    cd <REPO_FOLDER>
    ```
 2. **Open the solution in Visual Studio**
