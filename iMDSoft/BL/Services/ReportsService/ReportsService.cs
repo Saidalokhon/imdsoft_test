@@ -33,8 +33,8 @@ namespace BL.Services.ReportService
 
                 return _mapper.Map<ICollection<Report>>(report);
             }
-            catch (Exception ex) 
-            { 
+            catch (Exception ex)
+            {
                 _logger.LogError(ex, "Error generating report from {FromDate} to {ToDate}. Error message: {ErrorMessage}", reportPeriod.FromDate, reportPeriod.ToDate, ex.Message);
                 throw;
             }

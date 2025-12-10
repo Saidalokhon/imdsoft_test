@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DAL.Repositories.ReportsRepository
+﻿namespace DAL.Repositories.ReportsRepository
 {
     public interface IReportsRepository
     {

@@ -63,7 +63,7 @@
             profiles_lvw.HeaderStyle = ColumnHeaderStyle.Nonclickable;
             profiles_lvw.Location = new Point(47, 12);
             profiles_lvw.Name = "profiles_lvw";
-            profiles_lvw.Size = new Size(445, 391);
+            profiles_lvw.Size = new Size(446, 391);
             profiles_lvw.TabIndex = 1;
             profiles_lvw.UseCompatibleStateImageBehavior = false;
             profiles_lvw.View = View.Details;
@@ -99,7 +99,7 @@
             tests_lvw.Columns.AddRange(new ColumnHeader[] { testId, testParentId, testName, testDate, testResult, isWithinThreshold });
             tests_lvw.FullRowSelect = true;
             tests_lvw.GridLines = true;
-            tests_lvw.Location = new Point(520, 12);
+            tests_lvw.Location = new Point(525, 12);
             tests_lvw.Name = "tests_lvw";
             tests_lvw.Size = new Size(664, 391);
             tests_lvw.TabIndex = 2;
@@ -144,7 +144,7 @@
             // addTest_btn
             // 
             addTest_btn.Enabled = false;
-            addTest_btn.Location = new Point(520, 409);
+            addTest_btn.Location = new Point(525, 409);
             addTest_btn.Name = "addTest_btn";
             addTest_btn.Size = new Size(94, 29);
             addTest_btn.TabIndex = 3;
@@ -154,7 +154,7 @@
             // 
             // generateReport_btn
             // 
-            generateReport_btn.Location = new Point(631, 409);
+            generateReport_btn.Location = new Point(625, 409);
             generateReport_btn.Name = "generateReport_btn";
             generateReport_btn.Size = new Size(149, 29);
             generateReport_btn.TabIndex = 4;

@@ -5,7 +5,7 @@ namespace BL.Validators
 {
     public class ReportPeriodValidator : AbstractValidator<ReportPeriod>
     {
-        public ReportPeriodValidator() 
+        public ReportPeriodValidator()
         {
             RuleFor(p => p.FromDate)
                 .LessThanOrEqualTo(p => p.ToDate).WithMessage("FromDate must be earlier than ToDate.")

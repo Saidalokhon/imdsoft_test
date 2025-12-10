@@ -71,10 +71,10 @@ namespace DAL.Repositories.ReportsRepository
             {
                 if (connection.State == ConnectionState.Open)
                 {
-                    connection.Close(); 
+                    connection.Close();
                 }
             }
-            
+
 
         }
     }

@@ -4,6 +4,7 @@ using BL.Services.PatientsService;
 using BL.Services.ReportService;
 using BL.Services.TestsService;
 using DAL;
+using DAL.Seeds;
 using DAL.Repositories;
 using DAL.Repositories.PatientsRepository;
 using DAL.Repositories.ReportsRepository;
@@ -35,7 +36,11 @@ namespace iMDSoft
             using (var scope = ServiceProvider.CreateScope())
             {
                 var db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
-                db.Database.EnsureCreated();
+                var created = db.Database.EnsureCreated();
+                if (created)
+                {
+                    db.SeedDatabase();
+                }
             }
 
             var mainForm = ServiceProvider.GetRequiredService<MainForm>();
